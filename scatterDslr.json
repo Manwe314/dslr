@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "figure": {
+    "width": 1920,
+    "height": 1080,
+    "background": "#fff8e7",
+    "title": {
+      "text": "Scatter Plot",
+      "fontSize": 32.0,
+      "box": {
+        "height": null
+      }
+    }
+  },
+  "datasets": [
+    {
+      "name": "main",
+      "schema": {
+        "x": "number",
+        "y": "number"
+      }
+    }
+  ],
+  "panels": [
+    {
+      "padding": {
+        "bottom": 20.0
+      },
+      "xAxis": {
+        "gridColor": "#e7eeff",
+        "tickLabelFontSize": 32.0,
+        "title": {
+          "text": "Defanse against the dark arts",
+          "fontSize": 32.0
+        }
+      },
+      "yAxis": {
+        "gridColor": "#e7eeff",
+        "tickLabelFontSize": 32.0,
+        "title": {
+          "text": "History of Magic",
+          "fontSize": 32.0,
+          "fontWeight": 400,
+          "hAlign": "left",
+          "vAlign": "top"
+        }
+      },
+      "layers": [
+        {
+          "dataset": "main",
+          "mapping": {
+            "x": {
+              "field": "x"
+            },
+            "y": {
+              "field": "y"
+            }
+          },
+          "style": {
+            "markerShape": "diamond",
+            "fillColor": "#9bb8ff",
+            "markerSize": 15.0
+          },
+          "stats": {
+            "meanPointShape": "circle"
+          }
+        }
+      ]
+    }
+  ]
+}
