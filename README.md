@@ -44,6 +44,8 @@ DSLR/
     ├── dataset_train.csv
     ├── dataset_test.csv
     ├── logreg_train.py
+    ├── logreg_predict.py
+    ├── houses.csv
     └── learned_weights.txt
 ```
 
@@ -819,9 +821,15 @@ Script:
 logreg_train.py
 ```
 
-This script starts the logistic regression part of the project.
+Prediction script:
 
-It:
+```bash
+logreg_predict.py
+```
+
+This part implements a one-vs-all logistic regression classifier for the four Hogwarts houses.
+
+The training script:
 
 - reads the training dataset,
 - converts `Birthday` into age,
@@ -829,7 +837,7 @@ It:
 - keeps the course scores as numerical features,
 - replaces missing values with feature means,
 - normalizes features,
-- trains logistic regression with gradient descent,
+- trains one binary logistic regression model per house,
 - saves normalization values and learned weights into `learned_weights.txt`.
 
 Run:
@@ -851,25 +859,257 @@ Output:
 learned_weights.txt
 ```
 
-## Current logistic regression status
+The prediction script:
 
-The current `logreg_train.py` implementation trains only the classifier for:
+- reads the test dataset,
+- reads the normalization values from `learned_weights.txt`,
+- reads the learned weights for all four houses,
+- normalizes the test data with the same values used during training,
+- computes one probability per house,
+- chooses the house with the highest probability,
+- writes the final predictions into `houses.csv`.
 
-```text
-Gryffindor
+Run:
+
+```bash
+python3 logreg_predict.py dataset_test.csv learned_weights.txt
 ```
 
-The code contains a comment indicating that this should be extended into a loop over all four houses.
-
-The project subject also expects a prediction script named:
+Output:
 
 ```text
-logreg_predict.py
+houses.csv
 ```
 
-At the current state of the repository, this file is not present.
+The output format is:
 
-So the logistic regression part is started, but not fully complete yet.
+```text
+Index,Hogwarts House
+0,Hufflepuff
+1,Ravenclaw
+...
+```
+
+### Features used by the model
+
+By default, the model uses:
+
+- age, computed from `Birthday`,
+- handedness, computed from `Best Hand`,
+- all course scores.
+
+The optional mode removes age and handedness:
+
+```bash
+python3 logreg_train.py dataset_train.csv 0
+```
+
+In that mode, only the course scores are used as features.
+
+The current trained model was generated without age and handedness.  
+This means the model uses the 13 course-score columns plus the bias term.
+
+### Learned weights file
+
+The file:
+
+```text
+learned_weights.txt
+```
+
+contains:
+
+1. the vector of feature means,
+2. the vector of feature standard deviations,
+3. one model for each house,
+4. a final feature flag.
+
+The format is:
+
+```text
+means
+standard_deviations
+house_name
+weights_for_that_house
+house_name
+weights_for_that_house
+house_name
+weights_for_that_house
+house_name
+weights_for_that_house
+0_or_1
+```
+
+The final flag means:
+
+```text
+1 -> the model was trained with age and handedness
+0 -> the model was trained without age and handedness
+```
+
+This is important because the prediction script must build the same feature vector shape as the training script.
+
+### Mathematical formulas used for logistic regression
+
+For one student, the feature vector is:
+
+```text
+x = [1, x_1, x_2, ..., x_n]
+```
+
+The first value is always:
+
+```text
+1
+```
+
+This is the bias term.
+
+For one house, the model learns a weight vector:
+
+```text
+w = [w_0, w_1, w_2, ..., w_n]
+```
+
+The linear score is:
+
+```text
+z = x · w
+```
+
+which means:
+
+```text
+z = w_0 + x_1w_1 + x_2w_2 + ... + x_nw_n
+```
+
+The sigmoid function converts this score into a probability:
+
+```text
+prediction = 1 / (1 + e^(-z))
+```
+
+For one-vs-all classification, the script trains four binary classifiers:
+
+```text
+Hufflepuff  vs all other houses
+Ravenclaw   vs all other houses
+Slytherin   vs all other houses
+Gryffindor  vs all other houses
+```
+
+For each house, the expected output is:
+
+```text
+y = 1 if the student belongs to that house
+y = 0 otherwise
+```
+
+### Gradient descent
+
+For all students, the prediction vector is:
+
+```text
+predictions = sigmoid(Xw)
+```
+
+The error is:
+
+```text
+error = predictions - y
+```
+
+The gradient is:
+
+```text
+gradient = (X^T × error) / m
+```
+
+where:
+
+```text
+m = number of students
+```
+
+The weights are updated with:
+
+```text
+w = w - learning_rate × gradient
+```
+
+The current implementation uses:
+
+```text
+iterations = 10000
+learning_rate = 0.001
+```
+
+### Normalization
+
+Before training, each feature is normalized:
+
+```text
+normalized_value = (value - mean) / standard_deviation
+```
+
+Missing values are replaced with the feature mean before normalization.
+
+The same means and standard deviations are saved into `learned_weights.txt` and reused during prediction.
+
+This matters because the prediction data must be transformed in exactly the same way as the training data.
+
+### Prediction rule
+
+During prediction, the script computes four probabilities:
+
+```text
+P(Hufflepuff)
+P(Ravenclaw)
+P(Slytherin)
+P(Gryffindor)
+```
+
+The final predicted house is the one with the highest probability:
+
+```text
+predicted_house = house with max probability
+```
+
+### Current logistic regression result
+
+The generated `houses.csv` contains predictions for all 400 students in `dataset_test.csv`.
+
+The test dataset does not contain the real Hogwarts house labels, so the true test accuracy cannot be computed directly from `dataset_test.csv`.
+
+As a sanity check, the trained model was evaluated on `dataset_train.csv`, where the real labels are known.
+
+Result:
+
+```text
+1571 / 1600 correct = 98.19%
+```
+
+The training confusion matrix was:
+
+```text
+                 Predicted
+True          Huf  Rav  Sly  Gry
+Hufflepuff    525   1    1    2
+Ravenclaw       4 435    2    2
+Slytherin       3   5  293    0
+Gryffindor      4   5    0  318
+```
+
+The prediction distribution on `dataset_test.csv` was:
+
+```text
+Hufflepuff: 144 / 400 = 36.0%
+Ravenclaw:  114 / 400 = 28.5%
+Gryffindor:  79 / 400 = 19.8%
+Slytherin:   63 / 400 = 15.8%
+```
+
+This distribution is close to the distribution of the training set, which is a useful consistency check.
 
 ## Generated files
 
@@ -878,6 +1118,7 @@ The project may generate:
 ```text
 *.png
 learned_weights.txt
+houses.csv
 ```
 
 The `.gitignore` already ignores PNG outputs and common Python cache or virtual environment files.
@@ -913,6 +1154,12 @@ cd ..
 # Logistic regression training
 cd ex03.LogisticRegression
 python3 logreg_train.py dataset_train.csv
+
+# Logistic regression training without age and handedness
+python3 logreg_train.py dataset_train.csv 0
+
+# Logistic regression prediction
+python3 logreg_predict.py dataset_test.csv learned_weights.txt
 ```
 
 ## Troubleshooting
@@ -969,9 +1216,6 @@ not from the repository root.
 
 This repository avoids using high-level functions such as `pandas.describe()` for the data analysis exercise, in line with the project constraints.
 
-For the final mandatory project, the logistic regression section still needs:
+The logistic regression part now trains all four one-vs-all classifiers and generates `houses.csv`.
 
-- one-vs-all training for all four houses,
-- a `logreg_predict.py` script,
-- generation of `houses.csv`,
-- accuracy evaluation against the expected labels.
+The final test accuracy cannot be measured from `dataset_test.csv` alone because the house labels in that file are empty.

@@ -127,21 +127,28 @@ def main():
 
  
 	# turn this into a loop over all 4 houses
-	weights = train_one_vs_all(
-		resources["weights"],
-		resources["student_vectors"],
-		resources["y_vectors"],
-		10000,
-		0.001,
-		"Gryffindor"
-	)
+	house_models = []
+	for house in house_names:
+		weights = train_one_vs_all(
+			resources["weights"],
+			resources["student_vectors"],
+			resources["y_vectors"],
+			10000,
+			0.001,
+			house
+		)
+		house_models.append((weights, house))
 
-	save_learned_weights(
-		"learned_weights.txt",
-		resources["normalization_means"],
-		resources["normalization_standard_deviations"],
-		weights
-	)
+	with open("learned_weights.txt", "w", encoding="utf-8") as file:
+		file.write(",".join(str(value) for value in resources["normalization_means"]) + "\n")
+		file.write(",".join(str(value) for value in resources["normalization_standard_deviations"]) + "\n")
+		for model in house_models:
+			file.write(model[1] + "\n")
+			file.write(",".join(str(value) for value in model[0]) + "\n")
+		if use_hand_and_age:
+			file.write("1\n")
+		else:
+			file.write("0\n")
 
 
 
