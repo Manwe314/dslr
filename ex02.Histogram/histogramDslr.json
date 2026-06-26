@@ -1,0 +1,57 @@
+{
+  "version": "1.0",
+  "figure": {
+    "title": {
+      "text": "Histogram chart",
+      "box": {
+        "height": null
+      }
+    }
+  },
+  "datasets": [
+    {
+      "name": "resonance",
+      "schema": {
+        "frequency_hz": "number",
+        "response": "number"
+      }
+    }
+  ],
+  "panels": [
+    {
+      "xAxis": {
+        "title": {
+          "text": "Response"
+        }
+      },
+      "yAxis": {
+        "title": {
+          "text": "Count"
+        }
+      },
+      "layers": [
+        {
+          "type": "histogram",
+          "dataset": "resonance",
+          "mapping": {
+            "data": {
+              "field": "response"
+            }
+          },
+          "style": {
+            "fillColor": "#6fb6ffb4",
+            "strokeColor": "#235d9f"
+          },
+          "stats": {
+            "showMeanLine": true,
+            "showMedianLine": true
+          },
+          "config": {
+            "binCount": 12,
+            "showEmptyBins": true
+          }
+        }
+      ]
+    }
+  ]
+}
