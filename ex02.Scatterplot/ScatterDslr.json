@@ -1,0 +1,114 @@
+{
+  "version": "2.0",
+  "fonts": [
+    {
+      "family": "Magic School One",
+      "weight": 400,
+      "style": "normal",
+      "path": "/home/lkukhale/MagicSchoolOne.ttf"
+    }
+  ],
+  "figure": {
+    "background": "#dabd90",
+    "padding": {
+      "left": 5.0,
+      "right": 5.0,
+      "top": 5.0,
+      "bottom": 5.0
+    },
+    "title": {
+      "text": "Scatter Plot",
+      "fontFamily": "Magic School One",
+      "fontSize": 42.0,
+      "color": "#32200d",
+      "box": {
+        "height": null
+      }
+    }
+  },
+  "datasets": [
+    {
+      "name": "main",
+      "schema": {
+        "x": "number",
+        "y": "number"
+      }
+    }
+  ],
+  "panels": [
+    {
+      "padding": {
+        "left": 0.0,
+        "right": 25.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "xAxis": {
+        "gridColor": "#222f5b",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "History Of my MF house",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "yAxis": {
+        "gridColor": "#222f5b",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "History Of my MF house",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "fontWeight": 400,
+          "color": "#32200d",
+          "hAlign": "left",
+          "vAlign": "top",
+          "orientation": "verticalCounterClockwise",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "layers": [
+        {
+          "dataset": "main",
+          "mapping": {
+            "x": {
+              "field": "x"
+            },
+            "y": {
+              "field": "y"
+            }
+          },
+          "style": {
+            "markerShape": "diamond",
+            "fillColor": "#2a623d",
+            "strokeColor": "#2a623d",
+            "strokeWidth": 2.0,
+            "markerSize": 15.0
+          }
+        }
+      ]
+    }
+  ]
+}

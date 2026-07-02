@@ -4,6 +4,7 @@ import csv
 import numpy as np
 import math
 import json
+import os
 
 score_cols = [
     "Arithmancy",
@@ -83,7 +84,10 @@ def load_data(fileName):
 	}
 
 def build_pair_plot(data, features):
-	plot_template = "./pairPlotDslr.json"
+	plot_template = os.path.join(
+		os.path.dirname(os.path.abspath(__file__)),
+		"PairPlotDslr.json"
+	)
 	plot = flowplot.plot(plot_template)
 
 	with open(plot_template, "r", encoding="utf-8") as file:

@@ -29,20 +29,20 @@ HOUSES = [
 
 HOUSE_STYLES = {
     "Gryffindor": {
-        "fillColor": "#d94c4cb4",
-        "strokeColor": "#8a1f1f",
+        "fillColor": "#ae0001b4",
+        "strokeColor": "#740001",
     },
     "Hufflepuff": {
-        "fillColor": "#f0c94cb4",
-        "strokeColor": "#9a7412",
+        "fillColor": "#f0c75eb4",
+        "strokeColor": "#ecb939",
     },
     "Ravenclaw": {
-        "fillColor": "#4c7fd9b4",
-        "strokeColor": "#1e3f8a",
+        "fillColor": "#222f5bb4",
+        "strokeColor": "#0e1a40",
     },
     "Slytherin": {
-        "fillColor": "#4ca86bb4",
-        "strokeColor": "#1f6b3a",
+        "fillColor": "#2a623db4",
+        "strokeColor": "#1a472a",
     },
 }
 
@@ -102,42 +102,15 @@ def build_course_template(base_template, course):
     """
     Build a FlowPlot template for one course.
 
-    The uploaded template has one histogram layer.
-    Here we duplicate that layer 4 times:
-    one layer for each Hogwarts house.
+    HistogramDslr v2 already defines one dataset and histogram layer for
+    each Hogwarts house, so only the course-specific labels need changing.
     """
     template = copy.deepcopy(base_template)
 
     template["figure"]["title"]["text"] = f"{course} score distribution by house"
-
-    template["datasets"] = []
-
     base_panel = template["panels"][0]
-    base_layer = base_panel["layers"][0]
-
-    new_layers = []
-
-    for house in HOUSES:
-        name = dataset_name(house)
-
-        template["datasets"].append({
-            "name": name,
-            "schema": {
-                "response": "number"
-            }
-        })
-
-        layer = copy.deepcopy(base_layer)
-        layer["dataset"] = name
-        layer["mapping"]["data"]["field"] = "response"
-
-        layer["style"] = HOUSE_STYLES[house]
-
-        new_layers.append(layer)
-
-    base_panel["layers"] = new_layers
     base_panel["xAxis"]["title"]["text"] = "Score"
-    base_panel["yAxis"]["title"]["text"] = "Count"
+    base_panel["yAxis"]["title"]["text"] = "Density"
 
     return template
 
@@ -174,7 +147,7 @@ def plot_histograms(data, courses, template_path):
 
             for house in HOUSES:
                 values = data[course][house]
-                plot.with_data(f"{dataset_name(house)}.response", values)
+                plot.with_data(f"{house}.x", values)
 
             output_name = f"histogram_{safe_filename(course)}.png"
             plot.write_png(output_name)
@@ -191,11 +164,12 @@ def main():
         sys.exit(1)
 
     filename = sys.argv[1]
-    template_path = "histogramDslr.json"
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    template_path = os.path.join(script_directory, "HistogramDslr.json")
 
     if not os.path.exists(template_path):
         print(f"Error: template file not found: {template_path}")
-        print("Put histogramDslr.json in the same folder as histogram-template.py.")
+        print("Put HistogramDslr.json in the same folder as histogram-template.py.")
         sys.exit(1)
 
     data, courses = read_dataset(filename)

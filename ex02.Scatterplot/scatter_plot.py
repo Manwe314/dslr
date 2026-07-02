@@ -95,7 +95,7 @@ def main():
 	columns_to_plot = get_columns_to_plot(data)
 
 	for pair_info in columns_to_plot:
-		plot = flowplot.plot("./scatterDslr.json")
+		plot = flowplot.plot("./ScatterDslr.json")
 		plot.set("panels[0].yAxis.title.text", pair_info["column1"])
 		plot.set("panels[0].xAxis.title.text", pair_info["column2"])
 		xValues = data[:, pair_info["index2"]]
