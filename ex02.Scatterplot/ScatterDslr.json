@@ -5,7 +5,7 @@
       "family": "Magic School One",
       "weight": 400,
       "style": "normal",
-      "path": "/home/lkukhale/MagicSchoolOne.ttf"
+      "path": "/home/lkukhale/kodi/dslr/MagicSchoolOne.ttf"
     }
   ],
   "figure": {
@@ -44,7 +44,7 @@
         "bottom": 0.0
       },
       "xAxis": {
-        "gridColor": "#222f5b",
+        "gridColor": "#222f5b20",
         "lineColor": "#222f5b",
         "lineWidth": 2.0,
         "tickColor": "#222f5b",
@@ -65,7 +65,7 @@
         }
       },
       "yAxis": {
-        "gridColor": "#222f5b",
+        "gridColor": "#222f5b20",
         "lineColor": "#222f5b",
         "lineWidth": 2.0,
         "tickColor": "#222f5b",

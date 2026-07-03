@@ -1,0 +1,1804 @@
+{
+  "version": "2.0",
+  "fonts": [
+    {
+      "family": "Magic School One",
+      "weight": 400,
+      "style": "normal",
+      "path": "/home/lkukhale/kodi/dslr/MagicSchoolOne.ttf"
+    }
+  ],
+  "figure": {
+    "background": "#dabd90",
+    "padding": {
+      "left": 5.0,
+      "right": 5.0,
+      "top": 5.0,
+      "bottom": 5.0
+    },
+    "title": {
+      "text": "Histogram Plots",
+      "fontFamily": "Magic School One",
+      "fontSize": 42.0,
+      "color": "#32200d",
+      "box": {
+        "height": null
+      }
+    },
+    "width": 1920,
+    "height": 1080,
+    "legends": [
+      {}
+    ]
+  },
+  "datasets": [
+    {
+      "name": "Gryffindor",
+      "schema": {
+        "Arithmancy": "number",
+        "Astronomy": "number",
+        "Herbology": "number",
+        "Defense Against the Dark Arts": "number",
+        "Divination": "number",
+        "Muggle Studies": "number",
+        "Ancient Runes": "number",
+        "History of Magic": "number",
+        "Transfiguration": "number",
+        "Potions": "number",
+        "Care of Magical Creatures": "number",
+        "Charms": "number",
+        "Flying": "number"
+      }
+    },
+    {
+      "name": "Hufflepuff",
+      "schema": {
+        "Arithmancy": "number",
+        "Astronomy": "number",
+        "Herbology": "number",
+        "Defense Against the Dark Arts": "number",
+        "Divination": "number",
+        "Muggle Studies": "number",
+        "Ancient Runes": "number",
+        "History of Magic": "number",
+        "Transfiguration": "number",
+        "Potions": "number",
+        "Care of Magical Creatures": "number",
+        "Charms": "number",
+        "Flying": "number"
+      }
+    },
+    {
+      "name": "Ravenclaw",
+      "schema": {
+        "Arithmancy": "number",
+        "Astronomy": "number",
+        "Herbology": "number",
+        "Defense Against the Dark Arts": "number",
+        "Divination": "number",
+        "Muggle Studies": "number",
+        "Ancient Runes": "number",
+        "History of Magic": "number",
+        "Transfiguration": "number",
+        "Potions": "number",
+        "Care of Magical Creatures": "number",
+        "Charms": "number",
+        "Flying": "number"
+      }
+    },
+    {
+      "name": "Slytherin",
+      "schema": {
+        "Arithmancy": "number",
+        "Astronomy": "number",
+        "Herbology": "number",
+        "Defense Against the Dark Arts": "number",
+        "Divination": "number",
+        "Muggle Studies": "number",
+        "Ancient Runes": "number",
+        "History of Magic": "number",
+        "Transfiguration": "number",
+        "Potions": "number",
+        "Care of Magical Creatures": "number",
+        "Charms": "number",
+        "Flying": "number"
+      }
+    }
+  ],
+  "panels": [
+    {
+      "padding": {
+        "left": 0.0,
+        "right": 25.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "xAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Score",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "yAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Density",
+          "fontFamily": "Magic School One",
+          "fontSize": 24.0,
+          "fontWeight": 400,
+          "color": "#32200d",
+          "hAlign": "left",
+          "vAlign": "top",
+          "orientation": "verticalCounterClockwise",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "layers": [
+        {
+          "id": "Gryffindor",
+          "type": "histogram",
+          "dataset": "Gryffindor",
+          "mapping": {
+            "data": {
+              "field": "Arithmancy"
+            }
+          },
+          "style": {
+            "fillColor": "#ae0001b4",
+            "strokeColor": "#740001"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Hufflepuff",
+          "type": "histogram",
+          "dataset": "Hufflepuff",
+          "mapping": {
+            "data": {
+              "field": "Arithmancy"
+            }
+          },
+          "style": {
+            "fillColor": "#f0c75eb4",
+            "strokeColor": "#ecb939"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Ravenclaw",
+          "type": "histogram",
+          "dataset": "Ravenclaw",
+          "mapping": {
+            "data": {
+              "field": "Arithmancy"
+            }
+          },
+          "style": {
+            "fillColor": "#222f5bb4",
+            "strokeColor": "#0e1a40"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Slytherin",
+          "type": "histogram",
+          "dataset": "Slytherin",
+          "mapping": {
+            "data": {
+              "field": "Arithmancy"
+            }
+          },
+          "style": {
+            "fillColor": "#2a623db4",
+            "strokeColor": "#1a472a"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        }
+      ],
+      "title": {
+        "visible": true,
+        "text": "Arithmancy",
+        "fontFamily": "Magic School One",
+        "fontSize": 20.0
+      }
+    },
+    {
+      "padding": {
+        "left": 0.0,
+        "right": 25.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "xAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Score",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "yAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Density",
+          "fontFamily": "Magic School One",
+          "fontSize": 24.0,
+          "fontWeight": 400,
+          "color": "#32200d",
+          "hAlign": "left",
+          "vAlign": "top",
+          "orientation": "verticalCounterClockwise",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "layers": [
+        {
+          "id": "Gryffindor",
+          "type": "histogram",
+          "dataset": "Gryffindor",
+          "mapping": {
+            "data": {
+              "field": "Astronomy"
+            }
+          },
+          "style": {
+            "fillColor": "#ae0001b4",
+            "strokeColor": "#740001"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Hufflepuff",
+          "type": "histogram",
+          "dataset": "Hufflepuff",
+          "mapping": {
+            "data": {
+              "field": "Astronomy"
+            }
+          },
+          "style": {
+            "fillColor": "#f0c75eb4",
+            "strokeColor": "#ecb939"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Ravenclaw",
+          "type": "histogram",
+          "dataset": "Ravenclaw",
+          "mapping": {
+            "data": {
+              "field": "Astronomy"
+            }
+          },
+          "style": {
+            "fillColor": "#222f5bb4",
+            "strokeColor": "#0e1a40"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Slytherin",
+          "type": "histogram",
+          "dataset": "Slytherin",
+          "mapping": {
+            "data": {
+              "field": "Astronomy"
+            }
+          },
+          "style": {
+            "fillColor": "#2a623db4",
+            "strokeColor": "#1a472a"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        }
+      ],
+      "title": {
+        "visible": true,
+        "text": "Astronomy",
+        "fontFamily": "Magic School One",
+        "fontSize": 20.0
+      }
+    },
+    {
+      "padding": {
+        "left": 0.0,
+        "right": 25.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "xAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Score",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "yAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Density",
+          "fontFamily": "Magic School One",
+          "fontSize": 24.0,
+          "fontWeight": 400,
+          "color": "#32200d",
+          "hAlign": "left",
+          "vAlign": "top",
+          "orientation": "verticalCounterClockwise",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "layers": [
+        {
+          "id": "Gryffindor",
+          "type": "histogram",
+          "dataset": "Gryffindor",
+          "mapping": {
+            "data": {
+              "field": "Herbology"
+            }
+          },
+          "style": {
+            "fillColor": "#ae0001b4",
+            "strokeColor": "#740001"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Hufflepuff",
+          "type": "histogram",
+          "dataset": "Hufflepuff",
+          "mapping": {
+            "data": {
+              "field": "Herbology"
+            }
+          },
+          "style": {
+            "fillColor": "#f0c75eb4",
+            "strokeColor": "#ecb939"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Ravenclaw",
+          "type": "histogram",
+          "dataset": "Ravenclaw",
+          "mapping": {
+            "data": {
+              "field": "Herbology"
+            }
+          },
+          "style": {
+            "fillColor": "#222f5bb4",
+            "strokeColor": "#0e1a40"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Slytherin",
+          "type": "histogram",
+          "dataset": "Slytherin",
+          "mapping": {
+            "data": {
+              "field": "Herbology"
+            }
+          },
+          "style": {
+            "fillColor": "#2a623db4",
+            "strokeColor": "#1a472a"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        }
+      ],
+      "title": {
+        "visible": true,
+        "text": "Herbology",
+        "fontFamily": "Magic School One",
+        "fontSize": 20.0
+      }
+    },
+    {
+      "padding": {
+        "left": 0.0,
+        "right": 25.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "xAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Score",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "yAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Density",
+          "fontFamily": "Magic School One",
+          "fontSize": 24.0,
+          "fontWeight": 400,
+          "color": "#32200d",
+          "hAlign": "left",
+          "vAlign": "top",
+          "orientation": "verticalCounterClockwise",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "layers": [
+        {
+          "id": "Gryffindor",
+          "type": "histogram",
+          "dataset": "Gryffindor",
+          "mapping": {
+            "data": {
+              "field": "Defense Against the Dark Arts"
+            }
+          },
+          "style": {
+            "fillColor": "#ae0001b4",
+            "strokeColor": "#740001"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Hufflepuff",
+          "type": "histogram",
+          "dataset": "Hufflepuff",
+          "mapping": {
+            "data": {
+              "field": "Defense Against the Dark Arts"
+            }
+          },
+          "style": {
+            "fillColor": "#f0c75eb4",
+            "strokeColor": "#ecb939"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Ravenclaw",
+          "type": "histogram",
+          "dataset": "Ravenclaw",
+          "mapping": {
+            "data": {
+              "field": "Defense Against the Dark Arts"
+            }
+          },
+          "style": {
+            "fillColor": "#222f5bb4",
+            "strokeColor": "#0e1a40"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Slytherin",
+          "type": "histogram",
+          "dataset": "Slytherin",
+          "mapping": {
+            "data": {
+              "field": "Defense Against the Dark Arts"
+            }
+          },
+          "style": {
+            "fillColor": "#2a623db4",
+            "strokeColor": "#1a472a"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        }
+      ],
+      "title": {
+        "visible": true,
+        "text": "Defense Against the Dark Arts",
+        "fontFamily": "Magic School One",
+        "fontSize": 20.0
+      }
+    },
+    {
+      "padding": {
+        "left": 0.0,
+        "right": 25.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "xAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Score",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "yAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Density",
+          "fontFamily": "Magic School One",
+          "fontSize": 24.0,
+          "fontWeight": 400,
+          "color": "#32200d",
+          "hAlign": "left",
+          "vAlign": "top",
+          "orientation": "verticalCounterClockwise",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "layers": [
+        {
+          "id": "Gryffindor",
+          "type": "histogram",
+          "dataset": "Gryffindor",
+          "mapping": {
+            "data": {
+              "field": "Divination"
+            }
+          },
+          "style": {
+            "fillColor": "#ae0001b4",
+            "strokeColor": "#740001"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Hufflepuff",
+          "type": "histogram",
+          "dataset": "Hufflepuff",
+          "mapping": {
+            "data": {
+              "field": "Divination"
+            }
+          },
+          "style": {
+            "fillColor": "#f0c75eb4",
+            "strokeColor": "#ecb939"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Ravenclaw",
+          "type": "histogram",
+          "dataset": "Ravenclaw",
+          "mapping": {
+            "data": {
+              "field": "Divination"
+            }
+          },
+          "style": {
+            "fillColor": "#222f5bb4",
+            "strokeColor": "#0e1a40"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Slytherin",
+          "type": "histogram",
+          "dataset": "Slytherin",
+          "mapping": {
+            "data": {
+              "field": "Divination"
+            }
+          },
+          "style": {
+            "fillColor": "#2a623db4",
+            "strokeColor": "#1a472a"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        }
+      ],
+      "title": {
+        "visible": true,
+        "text": "Divination",
+        "fontFamily": "Magic School One",
+        "fontSize": 20.0
+      }
+    },
+    {
+      "padding": {
+        "left": 0.0,
+        "right": 25.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "xAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Score",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "yAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Density",
+          "fontFamily": "Magic School One",
+          "fontSize": 24.0,
+          "fontWeight": 400,
+          "color": "#32200d",
+          "hAlign": "left",
+          "vAlign": "top",
+          "orientation": "verticalCounterClockwise",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "layers": [
+        {
+          "id": "Gryffindor",
+          "type": "histogram",
+          "dataset": "Gryffindor",
+          "mapping": {
+            "data": {
+              "field": "Muggle Studies"
+            }
+          },
+          "style": {
+            "fillColor": "#ae0001b4",
+            "strokeColor": "#740001"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Hufflepuff",
+          "type": "histogram",
+          "dataset": "Hufflepuff",
+          "mapping": {
+            "data": {
+              "field": "Muggle Studies"
+            }
+          },
+          "style": {
+            "fillColor": "#f0c75eb4",
+            "strokeColor": "#ecb939"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Ravenclaw",
+          "type": "histogram",
+          "dataset": "Ravenclaw",
+          "mapping": {
+            "data": {
+              "field": "Muggle Studies"
+            }
+          },
+          "style": {
+            "fillColor": "#222f5bb4",
+            "strokeColor": "#0e1a40"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Slytherin",
+          "type": "histogram",
+          "dataset": "Slytherin",
+          "mapping": {
+            "data": {
+              "field": "Muggle Studies"
+            }
+          },
+          "style": {
+            "fillColor": "#2a623db4",
+            "strokeColor": "#1a472a"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        }
+      ],
+      "title": {
+        "visible": true,
+        "text": "Muggle Studies",
+        "fontFamily": "Magic School One",
+        "fontSize": 20.0
+      }
+    },
+    {
+      "padding": {
+        "left": 0.0,
+        "right": 25.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "xAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Score",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "yAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Density",
+          "fontFamily": "Magic School One",
+          "fontSize": 24.0,
+          "fontWeight": 400,
+          "color": "#32200d",
+          "hAlign": "left",
+          "vAlign": "top",
+          "orientation": "verticalCounterClockwise",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "layers": [
+        {
+          "id": "Gryffindor",
+          "type": "histogram",
+          "dataset": "Gryffindor",
+          "mapping": {
+            "data": {
+              "field": "Ancient Runes"
+            }
+          },
+          "style": {
+            "fillColor": "#ae0001b4",
+            "strokeColor": "#740001"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Hufflepuff",
+          "type": "histogram",
+          "dataset": "Hufflepuff",
+          "mapping": {
+            "data": {
+              "field": "Ancient Runes"
+            }
+          },
+          "style": {
+            "fillColor": "#f0c75eb4",
+            "strokeColor": "#ecb939"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Ravenclaw",
+          "type": "histogram",
+          "dataset": "Ravenclaw",
+          "mapping": {
+            "data": {
+              "field": "Ancient Runes"
+            }
+          },
+          "style": {
+            "fillColor": "#222f5bb4",
+            "strokeColor": "#0e1a40"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Slytherin",
+          "type": "histogram",
+          "dataset": "Slytherin",
+          "mapping": {
+            "data": {
+              "field": "Ancient Runes"
+            }
+          },
+          "style": {
+            "fillColor": "#2a623db4",
+            "strokeColor": "#1a472a"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        }
+      ],
+      "title": {
+        "visible": true,
+        "text": "Ancient Runes",
+        "fontFamily": "Magic School One",
+        "fontSize": 20.0
+      }
+    },
+    {
+      "padding": {
+        "left": 0.0,
+        "right": 25.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "xAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Score",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "yAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Density",
+          "fontFamily": "Magic School One",
+          "fontSize": 24.0,
+          "fontWeight": 400,
+          "color": "#32200d",
+          "hAlign": "left",
+          "vAlign": "top",
+          "orientation": "verticalCounterClockwise",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "layers": [
+        {
+          "id": "Gryffindor",
+          "type": "histogram",
+          "dataset": "Gryffindor",
+          "mapping": {
+            "data": {
+              "field": "History of Magic"
+            }
+          },
+          "style": {
+            "fillColor": "#ae0001b4",
+            "strokeColor": "#740001"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Hufflepuff",
+          "type": "histogram",
+          "dataset": "Hufflepuff",
+          "mapping": {
+            "data": {
+              "field": "History of Magic"
+            }
+          },
+          "style": {
+            "fillColor": "#f0c75eb4",
+            "strokeColor": "#ecb939"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Ravenclaw",
+          "type": "histogram",
+          "dataset": "Ravenclaw",
+          "mapping": {
+            "data": {
+              "field": "History of Magic"
+            }
+          },
+          "style": {
+            "fillColor": "#222f5bb4",
+            "strokeColor": "#0e1a40"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Slytherin",
+          "type": "histogram",
+          "dataset": "Slytherin",
+          "mapping": {
+            "data": {
+              "field": "History of Magic"
+            }
+          },
+          "style": {
+            "fillColor": "#2a623db4",
+            "strokeColor": "#1a472a"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        }
+      ],
+      "title": {
+        "visible": true,
+        "text": "History of Magic",
+        "fontFamily": "Magic School One",
+        "fontSize": 20.0
+      }
+    },
+    {
+      "padding": {
+        "left": 0.0,
+        "right": 25.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "xAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Score",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "yAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Density",
+          "fontFamily": "Magic School One",
+          "fontSize": 24.0,
+          "fontWeight": 400,
+          "color": "#32200d",
+          "hAlign": "left",
+          "vAlign": "top",
+          "orientation": "verticalCounterClockwise",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "layers": [
+        {
+          "id": "Gryffindor",
+          "type": "histogram",
+          "dataset": "Gryffindor",
+          "mapping": {
+            "data": {
+              "field": "Transfiguration"
+            }
+          },
+          "style": {
+            "fillColor": "#ae0001b4",
+            "strokeColor": "#740001"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Hufflepuff",
+          "type": "histogram",
+          "dataset": "Hufflepuff",
+          "mapping": {
+            "data": {
+              "field": "Transfiguration"
+            }
+          },
+          "style": {
+            "fillColor": "#f0c75eb4",
+            "strokeColor": "#ecb939"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Ravenclaw",
+          "type": "histogram",
+          "dataset": "Ravenclaw",
+          "mapping": {
+            "data": {
+              "field": "Transfiguration"
+            }
+          },
+          "style": {
+            "fillColor": "#222f5bb4",
+            "strokeColor": "#0e1a40"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Slytherin",
+          "type": "histogram",
+          "dataset": "Slytherin",
+          "mapping": {
+            "data": {
+              "field": "Transfiguration"
+            }
+          },
+          "style": {
+            "fillColor": "#2a623db4",
+            "strokeColor": "#1a472a"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        }
+      ],
+      "title": {
+        "visible": true,
+        "text": "Transfiguration",
+        "fontFamily": "Magic School One",
+        "fontSize": 20.0
+      }
+    },
+    {
+      "padding": {
+        "left": 0.0,
+        "right": 25.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "xAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Score",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "yAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Density",
+          "fontFamily": "Magic School One",
+          "fontSize": 24.0,
+          "fontWeight": 400,
+          "color": "#32200d",
+          "hAlign": "left",
+          "vAlign": "top",
+          "orientation": "verticalCounterClockwise",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "layers": [
+        {
+          "id": "Gryffindor",
+          "type": "histogram",
+          "dataset": "Gryffindor",
+          "mapping": {
+            "data": {
+              "field": "Potions"
+            }
+          },
+          "style": {
+            "fillColor": "#ae0001b4",
+            "strokeColor": "#740001"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Hufflepuff",
+          "type": "histogram",
+          "dataset": "Hufflepuff",
+          "mapping": {
+            "data": {
+              "field": "Potions"
+            }
+          },
+          "style": {
+            "fillColor": "#f0c75eb4",
+            "strokeColor": "#ecb939"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Ravenclaw",
+          "type": "histogram",
+          "dataset": "Ravenclaw",
+          "mapping": {
+            "data": {
+              "field": "Potions"
+            }
+          },
+          "style": {
+            "fillColor": "#222f5bb4",
+            "strokeColor": "#0e1a40"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Slytherin",
+          "type": "histogram",
+          "dataset": "Slytherin",
+          "mapping": {
+            "data": {
+              "field": "Potions"
+            }
+          },
+          "style": {
+            "fillColor": "#2a623db4",
+            "strokeColor": "#1a472a"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        }
+      ],
+      "title": {
+        "visible": true,
+        "text": "Potions",
+        "fontFamily": "Magic School One",
+        "fontSize": 20.0
+      }
+    },
+    {
+      "padding": {
+        "left": 0.0,
+        "right": 25.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "xAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Score",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "yAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Density",
+          "fontFamily": "Magic School One",
+          "fontSize": 24.0,
+          "fontWeight": 400,
+          "color": "#32200d",
+          "hAlign": "left",
+          "vAlign": "top",
+          "orientation": "verticalCounterClockwise",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "layers": [
+        {
+          "id": "Gryffindor",
+          "type": "histogram",
+          "dataset": "Gryffindor",
+          "mapping": {
+            "data": {
+              "field": "Care of Magical Creatures"
+            }
+          },
+          "style": {
+            "fillColor": "#ae0001b4",
+            "strokeColor": "#740001"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Hufflepuff",
+          "type": "histogram",
+          "dataset": "Hufflepuff",
+          "mapping": {
+            "data": {
+              "field": "Care of Magical Creatures"
+            }
+          },
+          "style": {
+            "fillColor": "#f0c75eb4",
+            "strokeColor": "#ecb939"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Ravenclaw",
+          "type": "histogram",
+          "dataset": "Ravenclaw",
+          "mapping": {
+            "data": {
+              "field": "Care of Magical Creatures"
+            }
+          },
+          "style": {
+            "fillColor": "#222f5bb4",
+            "strokeColor": "#0e1a40"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Slytherin",
+          "type": "histogram",
+          "dataset": "Slytherin",
+          "mapping": {
+            "data": {
+              "field": "Care of Magical Creatures"
+            }
+          },
+          "style": {
+            "fillColor": "#2a623db4",
+            "strokeColor": "#1a472a"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        }
+      ],
+      "title": {
+        "visible": true,
+        "text": "Care of Magical Creatures",
+        "fontFamily": "Magic School One",
+        "fontSize": 20.0
+      }
+    },
+    {
+      "padding": {
+        "left": 0.0,
+        "right": 25.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "xAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Score",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "yAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Density",
+          "fontFamily": "Magic School One",
+          "fontSize": 24.0,
+          "fontWeight": 400,
+          "color": "#32200d",
+          "hAlign": "left",
+          "vAlign": "top",
+          "orientation": "verticalCounterClockwise",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "layers": [
+        {
+          "id": "Gryffindor",
+          "type": "histogram",
+          "dataset": "Gryffindor",
+          "mapping": {
+            "data": {
+              "field": "Charms"
+            }
+          },
+          "style": {
+            "fillColor": "#ae0001b4",
+            "strokeColor": "#740001"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Hufflepuff",
+          "type": "histogram",
+          "dataset": "Hufflepuff",
+          "mapping": {
+            "data": {
+              "field": "Charms"
+            }
+          },
+          "style": {
+            "fillColor": "#f0c75eb4",
+            "strokeColor": "#ecb939"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Ravenclaw",
+          "type": "histogram",
+          "dataset": "Ravenclaw",
+          "mapping": {
+            "data": {
+              "field": "Charms"
+            }
+          },
+          "style": {
+            "fillColor": "#222f5bb4",
+            "strokeColor": "#0e1a40"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Slytherin",
+          "type": "histogram",
+          "dataset": "Slytherin",
+          "mapping": {
+            "data": {
+              "field": "Charms"
+            }
+          },
+          "style": {
+            "fillColor": "#2a623db4",
+            "strokeColor": "#1a472a"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        }
+      ],
+      "title": {
+        "visible": true,
+        "text": "Charms",
+        "fontFamily": "Magic School One",
+        "fontSize": 20.0
+      }
+    },
+    {
+      "padding": {
+        "left": 0.0,
+        "right": 25.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "xAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Score",
+          "fontFamily": "Magic School One",
+          "fontSize": 32.0,
+          "color": "#32200d",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "yAxis": {
+        "gridColor": "#222f5b20",
+        "lineColor": "#222f5b",
+        "lineWidth": 2.0,
+        "tickColor": "#222f5b",
+        "tickWidth": 2.0,
+        "tickLabel": {
+          "fontFamily": "Magic School One",
+          "fontSize": 20.0,
+          "color": "#32200d"
+        },
+        "title": {
+          "text": "Density",
+          "fontFamily": "Magic School One",
+          "fontSize": 24.0,
+          "fontWeight": 400,
+          "color": "#32200d",
+          "hAlign": "left",
+          "vAlign": "top",
+          "orientation": "verticalCounterClockwise",
+          "box": {
+            "height": null
+          }
+        }
+      },
+      "layers": [
+        {
+          "id": "Gryffindor",
+          "type": "histogram",
+          "dataset": "Gryffindor",
+          "mapping": {
+            "data": {
+              "field": "Flying"
+            }
+          },
+          "style": {
+            "fillColor": "#ae0001b4",
+            "strokeColor": "#740001"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Hufflepuff",
+          "type": "histogram",
+          "dataset": "Hufflepuff",
+          "mapping": {
+            "data": {
+              "field": "Flying"
+            }
+          },
+          "style": {
+            "fillColor": "#f0c75eb4",
+            "strokeColor": "#ecb939"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Ravenclaw",
+          "type": "histogram",
+          "dataset": "Ravenclaw",
+          "mapping": {
+            "data": {
+              "field": "Flying"
+            }
+          },
+          "style": {
+            "fillColor": "#222f5bb4",
+            "strokeColor": "#0e1a40"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        },
+        {
+          "id": "Slytherin",
+          "type": "histogram",
+          "dataset": "Slytherin",
+          "mapping": {
+            "data": {
+              "field": "Flying"
+            }
+          },
+          "style": {
+            "fillColor": "#2a623db4",
+            "strokeColor": "#1a472a"
+          },
+          "config": {
+            "valueMode": "density"
+          }
+        }
+      ],
+      "title": {
+        "visible": true,
+        "text": "Flying",
+        "fontFamily": "Magic School One",
+        "fontSize": 20.0
+      }
+    }
+  ],
+  "layout": {
+    "rows": 4,
+    "cols": 4
+  }
+}
