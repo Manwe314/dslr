@@ -31,15 +31,15 @@ DSLR/
 │   ├── dataset_train.csv
 │   ├── histogram.py
 │   ├── histogram-template.py
-│   └── histogramDslr.json
+│   └── HistogramDslr.json
 ├── ex02.Scatterplot/
 │   ├── dataset_train.csv
 │   ├── scatter_plot.py
-│   └── scatterDslr.json
+│   └── ScatterDslr.json
 ├── ex02.Pairplot/
 │   ├── dataset_train.csv
 │   ├── pair_plot.py
-│   └── pairPlotDslr.json
+│   └── PairPlotDslr.json
 └── ex03.LogisticRegression/
     ├── dataset_train.csv
     ├── dataset_test.csv
@@ -121,9 +121,9 @@ Do not confuse it with the different package named `flowplot`.
 Exercise 02 uses several `*.json` files as plot templates:
 
 ```text
-histogramDslr.json
-scatterDslr.json
-pairPlotDslr.json
+HistogramDslr.json
+ScatterDslr.json
+PairPlotDslr.json
 ```
 
 These JSON files are not datasets. They are **plot templates** used by `FlowPlotPy` to draw the final charts.
@@ -271,9 +271,9 @@ Script:
 describe.py
 ```
 
-This script reads a CSV file and prints statistical information for all numerical columns.
+This script reads a CSV file and prints statistical information for the numerical **feature** columns used in the DSLR dataset.
 
-It computes:
+The script manually computes:
 
 - `Count`
 - `Mean`
@@ -284,33 +284,93 @@ It computes:
 - `75%`
 - `Max`
 
-The implementation manually computes the statistics using Python standard tools. It does not use `pandas.describe()`.
+It uses Python standard tools such as `csv`, `math`, and loops. It does **not** use `pandas.describe()`.
 
-### Mathematical formulas used for data analysis
+### Columns used by the script
 
-For each numerical column, the script first removes empty or non-numerical values.
+The current implementation does not analyze every column in the CSV file.
 
-Let the remaining values be:
+It first ignores non-feature columns:
+
+```text
+Index
+Hogwarts House
+First Name
+Last Name
+Birthday
+Best Hand
+Blood Status
+```
+
+This means that `Index` is not included in the output, even though it contains numbers. It is treated as an identifier, not as a real numerical feature.
+
+The remaining columns are the course-score columns:
+
+```text
+Arithmancy
+Astronomy
+Herbology
+Defense Against the Dark Arts
+Divination
+Muggle Studies
+Ancient Runes
+History of Magic
+Transfiguration
+Potions
+Care of Magical Creatures
+Charms
+Flying
+```
+
+For each of these columns, the script keeps only valid finite numerical values.
+
+Ignored values include:
+
+- empty cells,
+- text values,
+- `NaN`,
+- `+inf`,
+- `-inf`.
+
+A column is printed only if it contains at least one valid numerical value.
+
+### Mathematical formulas used by the current implementation
+
+For one valid numerical column, let the kept values be:
 
 ```text
 x_1, x_2, ..., x_n
 ```
 
-where `n` is the number of valid numerical values.
+where:
+
+```text
+n = number of valid finite numerical values
+```
 
 ### Count
 
-`Count` is the number of valid numerical values in the column.
+`Count` is the number of valid values kept in the column.
 
 ```text
 Count = n
 ```
 
-Empty values are ignored.
+The code stores this value as a float:
+
+```text
+Count = float(len(values))
+```
+
+That is why it is printed with six decimals, for example:
+
+```text
+1566.000000
+```
 
 ### Mean
 
-`Mean` is the arithmetic average.
+`Mean` is the arithmetic average of the valid values.
 
 ```text
 Mean = (x_1 + x_2 + ... + x_n) / n
@@ -322,20 +382,33 @@ Equivalently:
 Mean = (1 / n) × sum(x_i)
 ```
 
+In the code, this is done manually with a loop:
+
+```text
+total = x_1 + x_2 + ... + x_n
+Mean = total / n
+```
+
 ### Std
 
-`Std` is the sample standard deviation, like `pandas.describe()`.
+`Std` is the sample standard deviation, matching the usual `pandas.describe()` behavior.
 
-First, compute the mean:
+First, the mean is computed:
 
 ```text
 mean = (1 / n) × sum(x_i)
 ```
 
-Then compute the sample variance:
+Then the script computes the sum of squared distances from the mean:
 
 ```text
-variance = sum((x_i - mean)^2) / (n - 1)
+sum_squared_distances = sum((x_i - mean)^2)
+```
+
+The sample variance is:
+
+```text
+variance = sum_squared_distances / (n - 1)
 ```
 
 Finally:
@@ -344,15 +417,15 @@ Finally:
 Std = sqrt(variance)
 ```
 
-So:
+So the complete formula is:
 
 ```text
 Std = sqrt(sum((x_i - mean)^2) / (n - 1))
 ```
 
-The denominator is `n - 1`, not `n`, because this is the **sample** standard deviation.
+The denominator is `n - 1`, not `n`, because the implementation uses the **sample** standard deviation.
 
-If there is only one valid value, the standard deviation is undefined, so the script returns:
+If a column has fewer than two valid values, the standard deviation cannot be computed. In that case, the script returns:
 
 ```text
 nan
@@ -360,29 +433,35 @@ nan
 
 ### Min
 
-`Min` is the smallest value in the column.
+`Min` is the smallest valid value in the column.
 
 ```text
 Min = min(x_1, x_2, ..., x_n)
 ```
 
+The code finds it manually by starting with the first value, then comparing every following value.
+
 ### Max
 
-`Max` is the largest value in the column.
+`Max` is the largest valid value in the column.
 
 ```text
 Max = max(x_1, x_2, ..., x_n)
 ```
 
+The code finds it manually by starting with the first value, then comparing every following value.
+
 ### Percentiles: 25%, 50%, 75%
 
-The script sorts the values first:
+The script uses linear interpolation percentiles, close to the default behavior of `pandas.describe()`.
+
+First, it sorts the valid values:
 
 ```text
-s_1 <= s_2 <= ... <= s_n
+s[0] <= s[1] <= ... <= s[n - 1]
 ```
 
-For a percentile `q`, with:
+For a percentile `q`:
 
 ```text
 q = 0.25 for 25%
@@ -390,7 +469,7 @@ q = 0.50 for 50%
 q = 0.75 for 75%
 ```
 
-the position is:
+The position is computed with zero-based indexing:
 
 ```text
 position = (n - 1) × q
@@ -403,20 +482,26 @@ lower = floor(position)
 upper = ceil(position)
 ```
 
-If `lower = upper`, the percentile is exactly the value at that position.
+If `n = 1`, the percentile is simply the only value:
 
 ```text
-percentile_q = s_position
+percentile_q = s[0]
 ```
 
-If `lower != upper`, the script uses linear interpolation:
+If `lower = upper`, the percentile is exactly the sorted value at that position:
+
+```text
+percentile_q = s[lower]
+```
+
+If `lower != upper`, the script interpolates between the two surrounding values:
 
 ```text
 weight = position - lower
 ```
 
 ```text
-percentile_q = s_lower + (s_upper - s_lower) × weight
+percentile_q = s[lower] + (s[upper] - s[lower]) × weight
 ```
 
 This gives:
@@ -429,19 +514,32 @@ This gives:
 
 The `50%` value is also the median.
 
-### Summary of parameters
+### Summary of Exercise 01 formulas
 
-| Parameter | Formula / meaning |
+| Parameter | Formula / meaning in the code |
 |---|---|
-| `Count` | `n` |
+| `Count` | `float(n)` |
 | `Mean` | `(1 / n) × sum(x_i)` |
 | `Std` | `sqrt(sum((x_i - mean)^2) / (n - 1))` |
-| `Min` | smallest value |
-| `25%` | percentile with `q = 0.25` |
-| `50%` | percentile with `q = 0.50`, also the median |
-| `75%` | percentile with `q = 0.75` |
-| `Max` | largest value |
+| `Min` | smallest valid finite value |
+| `25%` | linear interpolation percentile with `q = 0.25` |
+| `50%` | linear interpolation percentile with `q = 0.50`, also the median |
+| `75%` | linear interpolation percentile with `q = 0.75` |
+| `Max` | largest valid finite value |
 
+### Output formatting
+
+Every number is printed with six digits after the decimal point:
+
+```text
+value = f"{value:.6f}"
+```
+
+If the value is `nan`, the script prints:
+
+```text
+nan
+```
 
 Run:
 
@@ -453,15 +551,15 @@ python3 describe.py dataset_train.csv
 Example output shape:
 
 ```text
-              Index     Arithmancy      Astronomy      Herbology ...
-Count   ...
-Mean    ...
-Std     ...
-Min     ...
-25%     ...
-50%     ...
-75%     ...
-Max     ...
+            Arithmancy    Astronomy    Herbology  Defense Against the Dark Arts ...
+Count      ...          ...          ...        ...
+Mean       ...          ...          ...        ...
+Std        ...          ...          ...        ...
+Min        ...          ...          ...        ...
+25%        ...          ...          ...        ...
+50%        ...          ...          ...        ...
+75%        ...          ...          ...        ...
+Max        ...          ...          ...        ...
 ```
 
 ## Exercise 02.1 - Histogram
@@ -498,7 +596,7 @@ histogram_result.png
 This version uses the FlowPlotPy template:
 
 ```text
-histogramDslr.json
+HistogramDslr.json
 ```
 
 The script dynamically builds one histogram chart per course and injects the house data into the FlowPlotPy template.
@@ -618,7 +716,7 @@ scatter_plot.py
 Template:
 
 ```bash
-scatterDslr.json
+ScatterDslr.json
 ```
 
 This script computes the Pearson correlation coefficient for every pair of course-score columns.
@@ -720,7 +818,7 @@ pair_plot.py
 Template:
 
 ```bash
-pairPlotDslr.json
+PairPlotDslr.json
 ```
 
 This script chooses four useful features by comparing how much each course separates the four houses.
