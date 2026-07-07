@@ -45,6 +45,7 @@ DSLR/
     ├── dataset_test.csv
     ├── logreg_train.py
     ├── logreg_predict.py
+    ├── validate_logreg.py
     ├── houses.csv
     └── learned_weights.txt
 ```
@@ -925,6 +926,12 @@ Prediction script:
 logreg_predict.py
 ```
 
+Validation script:
+
+```bash
+validate_logreg.py
+```
+
 This part implements a one-vs-all logistic regression classifier for the four Hogwarts houses.
 
 The training script:
@@ -987,6 +994,66 @@ Index,Hogwarts House
 1,Ravenclaw
 ...
 ```
+
+### Validation with random train/test splits
+
+The script:
+
+```text
+validate_logreg.py
+```
+
+automates local accuracy testing when the real labels for `dataset_test.csv` are not available.
+
+By default, it:
+
+- reads the labelled `dataset_train.csv`,
+- creates 10 independent random splits,
+- uses 80% of the rows for training,
+- keeps 20% of the rows as a validation set,
+- runs `logreg_train.py` on the 80% training split,
+- runs `logreg_predict.py` on the 20% validation split,
+- compares `houses.csv` predictions with the real `Hogwarts House` values,
+- prints one accuracy score per run plus average, standard deviation, best, and worst accuracy.
+
+Run:
+
+```bash
+python3 validate_logreg.py
+```
+
+Use a fixed seed for reproducible splits:
+
+```bash
+python3 validate_logreg.py --seed 42
+```
+
+Keep the generated split files, learned weights, and predictions:
+
+```bash
+python3 validate_logreg.py --seed 42 --keep-splits KEEP_SPLITS
+```
+
+Each kept run is written into its own folder:
+
+```text
+KEEP_SPLITS/run_01/train_split.csv
+KEEP_SPLITS/run_01/test_split.csv
+KEEP_SPLITS/run_01/learned_weights.txt
+KEEP_SPLITS/run_01/houses.csv
+```
+
+Useful options:
+
+```text
+--runs N          number of random splits to test, default 10
+--test-ratio R    validation fraction, default 0.2
+--seed N          base random seed for repeatable splits
+--no-age-hand     train without Birthday age and Best Hand features
+--keep-splits DIR keep generated split/model/prediction files
+```
+
+Without `--keep-splits`, the script uses temporary folders so it does not overwrite the normal `learned_weights.txt` or `houses.csv` files.
 
 ### Features used by the model
 
@@ -1258,6 +1325,9 @@ python3 logreg_train.py dataset_train.csv 0
 
 # Logistic regression prediction
 python3 logreg_predict.py dataset_test.csv learned_weights.txt
+
+# Logistic regression validation on random 80/20 splits
+python3 validate_logreg.py --seed 42
 ```
 
 ## Troubleshooting

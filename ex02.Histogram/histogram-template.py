@@ -106,12 +106,12 @@ def main():
 
     filename = sys.argv[1]
     script_directory = os.path.dirname(os.path.abspath(__file__))
-    template_path = os.path.join(script_directory, "HisogramDslr.json")
+    template_path = os.path.join(script_directory, "HistogramDslr.json")
     output_path = os.path.join(script_directory, "histogram_result.png")
 
     if not os.path.exists(template_path):
         print(f"Error: template file not found: {template_path}")
-        print("Put hisogramDslr.json in the same folder as histogram-template.py.")
+        print("Put HistogramDslr.json in the same folder as histogram-template.py.")
         sys.exit(1)
 
     data = read_dataset(filename)
