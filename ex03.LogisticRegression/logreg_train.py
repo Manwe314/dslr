@@ -33,6 +33,39 @@ house_indexes = {
 
 current_date = date.today()
 
+def mean(values, axis=None, ignore_nan=False):
+	array = np.array(values, dtype=float)
+	if ignore_nan:
+		valid_values = ~np.isnan(array)
+		totals = np.sum(np.where(valid_values, array, 0.0), axis=axis)
+		counts = np.sum(valid_values, axis=axis)
+	else:
+		totals = np.sum(array, axis=axis)
+		counts = array.size if axis is None else array.shape[axis]
+
+	with np.errstate(invalid="ignore", divide="ignore"):
+		return np.asarray(totals / counts, dtype=float)
+
+def std(values, axis=None, ignore_nan=False):
+	array = np.array(values, dtype=float)
+	averages = mean(array, axis=axis, ignore_nan=ignore_nan)
+	if axis is None:
+		centered_values = array - averages
+	else:
+		centered_values = array - np.expand_dims(averages, axis=axis)
+
+	squared_distances = centered_values ** 2
+	if ignore_nan:
+		valid_values = ~np.isnan(array)
+		squared_distances = np.where(valid_values, squared_distances, 0.0)
+		counts = np.sum(valid_values, axis=axis)
+	else:
+		counts = array.size if axis is None else array.shape[axis]
+
+	totals = np.sum(squared_distances, axis=axis)
+	with np.errstate(invalid="ignore", divide="ignore"):
+		return np.asarray(np.sqrt(totals / counts), dtype=float)
+
 def get_age_in_years(birthday):
 	birth_date = datetime.strptime(birthday, "%Y-%m-%d").date()
 	age = current_date.year - birth_date.year
@@ -58,8 +91,8 @@ def get_house_vector(house):
 def normalize_student_vectors(raw_student_vectors):
 	student_vectors = np.array(raw_student_vectors, dtype=float)
 	features = student_vectors[:, 1:]
-	means = np.nanmean(features, axis=0)
-	standard_deviations = np.nanstd(features, axis=0)
+	means = mean(features, axis=0, ignore_nan=True)
+	standard_deviations = std(features, axis=0, ignore_nan=True)
 	standard_deviations[standard_deviations == 0] = 1
 
 	missing_values = np.isnan(features)

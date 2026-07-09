@@ -29,6 +29,39 @@ house_names = [
 	"Slytherin"
 ]
 
+def mean(values, axis=None, ignore_nan=False):
+	array = np.array(values, dtype=float)
+	if ignore_nan:
+		valid_values = ~np.isnan(array)
+		totals = np.sum(np.where(valid_values, array, 0.0), axis=axis)
+		counts = np.sum(valid_values, axis=axis)
+	else:
+		totals = np.sum(array, axis=axis)
+		counts = array.size if axis is None else array.shape[axis]
+
+	with np.errstate(invalid="ignore", divide="ignore"):
+		return np.asarray(totals / counts, dtype=float)
+
+def std(values, axis=None, ignore_nan=False):
+	array = np.array(values, dtype=float)
+	averages = mean(array, axis=axis, ignore_nan=ignore_nan)
+	if axis is None:
+		centered_values = array - averages
+	else:
+		centered_values = array - np.expand_dims(averages, axis=axis)
+
+	squared_distances = centered_values ** 2
+	if ignore_nan:
+		valid_values = ~np.isnan(array)
+		squared_distances = np.where(valid_values, squared_distances, 0.0)
+		counts = np.sum(valid_values, axis=axis)
+	else:
+		counts = array.size if axis is None else array.shape[axis]
+
+	totals = np.sum(squared_distances, axis=axis)
+	with np.errstate(invalid="ignore", divide="ignore"):
+		return np.asarray(np.sqrt(totals / counts), dtype=float)
+
 def get_features_to_use(data):
 	features = []
 	houses = data["houses"]
@@ -45,8 +78,8 @@ def get_features_to_use(data):
 			if len(house_values) == 0:
 				break
 
-			averages.append(float(np.mean(house_values)))
-			standard_deviations.append(float(np.std(house_values)))
+			averages.append(float(mean(house_values)))
+			standard_deviations.append(float(std(house_values)))
 
 		if len(averages) != len(house_names):
 			continue
