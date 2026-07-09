@@ -2,25 +2,32 @@
 
 import csv
 import sys
+import os
 import math
-import matplotlib.pyplot as plt
+import flowplot
 
-
-NON_COURSE_COLUMNS = {
-    "Index",
-    "Hogwarts House",
-    "First Name",
-    "Last Name",
-    "Birthday",
-    "Best Hand",
-    "Blood Status",
-}
 
 HOUSES = [
     "Gryffindor",
     "Hufflepuff",
     "Ravenclaw",
     "Slytherin",
+]
+
+COURSES = [
+    "Arithmancy",
+    "Astronomy",
+    "Herbology",
+    "Defense Against the Dark Arts",
+    "Divination",
+    "Muggle Studies",
+    "Ancient Runes",
+    "History of Magic",
+    "Transfiguration",
+    "Potions",
+    "Care of Magical Creatures",
+    "Charms",
+    "Flying",
 ]
 
 
@@ -37,14 +44,16 @@ def read_dataset(filename):
         reader = csv.DictReader(file)
         rows = list(reader)
 
-    courses = [
-        column for column in reader.fieldnames
-        if column not in NON_COURSE_COLUMNS
-    ]
+    if reader.fieldnames is None:
+        raise ValueError("The CSV file has no header.")
+
+    missing_courses = [course for course in COURSES if course not in reader.fieldnames]
+    if missing_courses:
+        raise ValueError(f"Missing course columns: {', '.join(missing_courses)}")
 
     data = {
         course: {house: [] for house in HOUSES}
-        for course in courses
+        for course in COURSES
     }
 
     for row in rows:
@@ -53,70 +62,42 @@ def read_dataset(filename):
         if house not in HOUSES:
             continue
 
-        for course in courses:
+        for course in COURSES:
             value = row.get(course)
 
             if value != "" and is_float(value):
-                data[course][house].append(float(value))
+                score = float(value)
+            else:
+                score = float("nan")
 
-    return data, courses
+            data[course][house].append(score)
 
-
-def make_bins(values, number_of_bins=20):
-    minimum = min(values)
-    maximum = max(values)
-
-    if minimum == maximum:
-        return number_of_bins
-
-    step = (maximum - minimum) / number_of_bins
-    return [minimum + i * step for i in range(number_of_bins + 1)]
-
-
-def plot_histograms(data, courses):
-    columns = 3
-    rows = math.ceil(len(courses) / columns)
-
-    fig, axes = plt.subplots(rows, columns, figsize=(15, 4 * rows))
-    axes = axes.flatten()
-
-    for index, course in enumerate(courses):
-        ax = axes[index]
-
-        all_values = []
-        for house in HOUSES:
-            all_values.extend(data[course][house])
-
-        if not all_values:
-            continue
-
-        bins = make_bins(all_values)
-
+    for course in COURSES:
         for house in HOUSES:
             scores = data[course][house]
+            valid_scores = [score for score in scores if math.isfinite(score)]
+            if not valid_scores:
+                raise ValueError(f"No numeric values for {house} in {course}.")
 
-            if scores:
-                ax.hist(
-                    scores,
-                    bins=bins,
-                    alpha=0.45,
-                    density=True,
-                    label=house
-                )
+            mean = sum(valid_scores) / len(valid_scores)
+            data[course][house] = [
+                score if math.isfinite(score) else mean
+                for score in scores
+            ]
 
-        ax.set_title(course)
-        ax.set_xlabel("Score")
-        ax.set_ylabel("Density")
+    return data
 
-    for index in range(len(courses), len(axes)):
-        axes[index].axis("off")
 
-    handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc="upper right")
+def plot_histograms(data, template_path, output_path):
+    plot = flowplot.plot(template_path)
 
-    plt.tight_layout()
-    plt.savefig("histogram_result.png", dpi=300, bbox_inches="tight")
-    plt.show()
+    for house in HOUSES:
+        for course in COURSES:
+            plot.with_data(f"{house}.{course}", data[course][house])
+
+    plot.write_png(output_path)
+    print(f"Created: {output_path}")
+
 
 def main():
     if len(sys.argv) != 2:
@@ -124,9 +105,17 @@ def main():
         sys.exit(1)
 
     filename = sys.argv[1]
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    template_path = os.path.join(script_directory, "HistogramDslr.json")
+    output_path = os.path.join(script_directory, "histogram_result.png")
 
-    data, courses = read_dataset(filename)
-    plot_histograms(data, courses)
+    if not os.path.exists(template_path):
+        print(f"Error: template file not found: {template_path}")
+        print("Put HistogramDslr.json in the same folder as histogram-template.py.")
+        sys.exit(1)
+
+    data = read_dataset(filename)
+    plot_histograms(data, template_path, output_path)
 
 
 if __name__ == "__main__":
